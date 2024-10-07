@@ -11,14 +11,14 @@ var snake = {
   x: 160,
   y: 160,
   
-  // snake velocity. moves one grid length every frame in either the x or y direction
+  // velocidad de la serpiente. mueve una longitud de cuadrícula en cada cuadro en la dirección x o y
   dx: grid,
   dy: 0,
   
-  // keep track of all grids the snake body occupies
+  // seguimiento cuerpo de la serpiente en la cuadricula
   cells: [],
   
-  // length of the snake. grows when eating an apple
+  // longitud inicial de la serpiente (crece al comer)
   maxCells: 4
 };
 var apple = {
@@ -26,17 +26,17 @@ var apple = {
   y: 320
 };
 
-// get random whole numbers in a specific range
-// @see https://stackoverflow.com/a/1527820/2124254
+// obtener números enteros aleatorios en un rango específico
+// VER https://stackoverflow.com/a/1527820/2124254
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-// game loop
+// loop del juego
 function loop() {
   requestAnimationFrame(loop);
 
-  // slow game loop to 15 fps instead of 60 (60/15 = 4)
+  // bucle de juego lento a 15 fps en lugar de 60 (60/15 = 4)
   if (++count < 4) {
     return;
   }
@@ -44,11 +44,11 @@ function loop() {
   count = 0;
   context.clearRect(0,0,canvas.width,canvas.height);
 
-  // move snake by it's velocity
+  // mueve la serpiente por su velocidad
   snake.x += snake.dx;
   snake.y += snake.dy;
 
-  // wrap snake position horizontally on edge of screen
+  // posición de la serpiente horizontalmente en el borde de la pantalla
   if (snake.x < 0) {
     snake.x = canvas.width - grid;
   }
@@ -56,7 +56,7 @@ function loop() {
     snake.x = 0;
   }
   
-  // wrap snake position vertically on edge of screen
+  // posición de la serpiente verticalmente en el borde de la pantalla
   if (snake.y < 0) {
     snake.y = canvas.height - grid;
   }
@@ -91,7 +91,7 @@ function loop() {
       apple.x = getRandomInt(0, 25) * grid;
       apple.y = getRandomInt(0, 25) * grid;
       score++;
-      scoreElement.textContent = "Score: " + score;
+      scoreElement.textContent = "Puntaje: " + score;
     }
 
     // check collision with all cells after this one (modified bubble sort)
