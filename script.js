@@ -108,6 +108,9 @@ function loop() {
 
         apple.x = getRandomInt(0, 25) * grid;
         apple.y = getRandomInt(0, 25) * grid;
+
+        score = 0;
+        scoreElement.textContent = "Puntaje: " + score;
       }
     }
   });
